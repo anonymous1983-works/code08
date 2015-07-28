@@ -1,0 +1,18 @@
+@slide-width: 1024px;
+@slide-height: 678px;
+
+.slide {
+
+  width: @slide-width;
+  height: @slide-height;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin-left: -(@slide-width / 2);
+  margin-top: -(@slide-height / 2);
+
+  .drop-shadow(0, 0, 5px, 0.2);
+
+}

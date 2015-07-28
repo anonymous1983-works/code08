@@ -1,0 +1,97 @@
+// --------------------------------------------------
+// Import / theme
+// --------------------------------------------------
+
+// Code Color
+// --------------------------------------------------
+
+@theme-color-blue: rgb(0, 28, 75);
+
+@theme-color-dodgerblue : rgb(0, 158, 224);
+
+@theme-color-teal: rgb(0, 106, 130);
+
+@theme-color-purple: rgb(138, 65, 133);
+
+@theme-color-green: rgb(151, 191, 13);
+
+@theme-color-orange: rgb(221, 160, 0);
+
+@theme-color-red: rgb(201, 79, 57);
+
+@theme-color-grey: rgb(118, 122, 126);
+
+@theme-color-brown: rgb(181, 164, 140);
+
+@theme-list-color: blue,
+dodgerblue,
+teal,
+purple,
+green,
+orange,
+red,
+grey,
+brown;
+
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1)); // next iteration
+  @c: extract(@theme-list-color, @counter);
+
+  .theme-color-@{c} {
+    color: ~"@{theme-color-@{c}}";
+  }
+
+  .theme-background-@{c} {
+    background-color: ~"@{theme-color-@{c}}";
+  }
+
+}
+
+.theme-generator () {
+  .loop(length(@theme-list-color)); // launch the loop
+}
+
+.theme-generator ();
+
+// UIK :: Layout
+// --------------------------------------------------
+
+@uik-wrap-header-background-color: mix(@base-color-blue, @base-color-white, 85%);
+@uik-wrap-header-height: @base-font-size-x-small + (@base-offset * 2);
+
+.uik-layout {
+  .uik-wrap-header {
+    .rem-calc(font-size, @base-font-size-x-small);
+    font-weight: @base-font-weight-bold;
+    .rem-calc(padding, 0);
+    .rem-calc(padding-left, @base-offset / 2);
+    .rem-calc(padding-right, @base-font-size-x-small + (@base-offset * 2));
+    .rem-calc(line-height, @uik-wrap-header-height);
+
+    background-color: @uik-wrap-header-background-color;
+    color: @base-color-white;
+
+    position: relative;
+    .fa {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      .rem-calc(padding, @base-offset);
+      .rem-calc(margin-top, -( 6.5 + @base-offset ));
+      cursor: pointer;
+    }
+  }
+  .uik-wrap-body {
+    border: 1px solid @base-color-grey-light;
+    .absolute(0, 0, 0, 0);
+    background-color: @base-color-white;
+    .no-border& {
+      border: 0;
+    }
+  }
+
+  .uik-wrap-header + .uik-wrap-body {
+    border-top: 0;
+    .absolute(@uik-wrap-header-height, 0, 0, 0);
+  }
+}

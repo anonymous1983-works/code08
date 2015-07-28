@@ -25,3 +25,25 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+
+
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+build/
+build/*
+bin/
+bin/*
+.settings/
+.settings/*
+.idea/
+www/test_out/
+
+
+www/bower_components/
+www/coverage/
+www/css/
+dist/

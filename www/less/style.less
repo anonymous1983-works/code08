@@ -1,0 +1,38 @@
+@import "import/reset";
+@import "import/variables";
+@import "import/elements";
+@import "import/util";
+@import "import/responsive";
+@import "import/layout";
+@import "import/override";
+@import "import/theme";
+
+@import "import/include/header";
+@import "import/include/slide";
+
+
+html, body, main{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body {
+  color: @base-master-color;
+  background: @base-master-background;
+  font-family: @base-font-family;
+  font-weight: @base-font-weight-light;
+  a {
+    text-decoration: none;
+    display: block;
+    &:hover, &:active {
+      text-decoration: none;
+    }
+    &:visited {
+      color: inherit;
+    }
+  }
+}
+
+
+
