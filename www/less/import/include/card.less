@@ -1,0 +1,59 @@
+// Color White / Black
+@theme-card-color-white: white;
+@theme-card-color-black: black;
+@theme-card-color-border: #e9eaed;
+
+@theme-card-base-offset: 5px;
+
+@theme-card-background-color: @theme-card-color-white;
+@theme-card-size-width: 220px;
+@theme-card-size-height: 110px;
+
+@theme-card-avatar-size-width: 80px;
+@theme-card-avatar-size-height: 80px;
+
+.amk-card {
+  float: left;
+  width: @theme-card-size-width;
+  height: @theme-card-size-height;
+  background-color: @theme-card-background-color;
+  border: 1px solid @theme-card-color-border;
+
+  margin-top: 10 + (@theme-card-avatar-size-height / 2);
+  margin-right: @theme-card-base-offset;
+  margin-bottom: @theme-card-base-offset;
+  margin-left: @theme-card-base-offset;
+
+  padding-top: 10 + (@theme-card-avatar-size-height / 2);
+
+  position: relative;
+  //.drop-shadow(0, 0, 10px, 0.1);
+
+  .avatar {
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 100%;
+    width: @theme-card-avatar-size-width;
+    height: @theme-card-avatar-size-height;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -(@theme-card-avatar-size-width / 2);
+    margin-top: -(@theme-card-avatar-size-height / 2 );
+    
+    background-image: url("../img/avatar/default/m.png");
+  }
+
+  .name {
+    text-align: center;
+    font-size: 0.875em;
+    font-weight: bold;
+  }
+
+  .department {
+    text-align: center;
+    font-size: 0.6875em;
+  }
+
+}

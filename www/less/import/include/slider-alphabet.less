@@ -1,0 +1,65 @@
+@theme-slider-alphabet-color-white: white;
+@theme-slider-alphabet-color-black: black;
+@theme-slider-alphabet-color-border: #afb9c5;
+@theme-slider-alphabet-background-color: #f1f3f5;
+
+.slider-alphabet {
+
+  background-color: @theme-slider-alphabet-background-color;
+
+  .vertical& {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    height: 100%;
+    z-index: 10;
+    border-left: 1px solid @theme-slider-alphabet-color-border;
+    .ui-tags {
+      height: 100%;
+    }
+  }
+
+  font-size: 0.75em;
+  text-align: center;
+  .item {
+
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 0;
+      height: 100%;
+      font-size: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:hover,
+    &.selected,
+    &.active {
+      &:after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        display: block;
+        border-top: 5px solid transparent;
+        border-right: 0px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 3px solid @theme-slider-alphabet-color-border;
+        content: "";
+        z-index: 2;
+        margin-top: -5px;
+      }
+    }
+
+    .vertical& {
+      .with-all& {
+        height: 3.7%;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+

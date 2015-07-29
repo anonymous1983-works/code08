@@ -3,14 +3,14 @@
 (function() {
 
   angular.module('trombiApp')
-    .controller('MainController', ['$scope', '$timeout', 'Contributors',
-    function($scope, $timeout, Contributors) {
+    .controller('MainController', ['$scope', '$timeout', '$filter', 'Contributors',
+    function($scope, $timeout, $filter, Contributors) {
 
-      $scope.main = {
-        
-      };
+      var orderBy = $filter('orderBy');
 
-      $scope.contributors = Contributors.owner;
+      $scope.main = {};
+
+      $scope.contributors = orderBy(Contributors.owner, 'firstname', false);
 
     }]);
 
