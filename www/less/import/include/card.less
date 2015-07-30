@@ -41,8 +41,25 @@
     left: 50%;
     margin-left: -(@theme-card-avatar-size-width / 2);
     margin-top: -(@theme-card-avatar-size-height / 2 );
-    
+    border: 3px solid #e9eaed;
+    background-color: #fff;
     background-image: url("../img/avatar/default/m.png");
+
+    &:before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      width: @theme-card-avatar-size-width - 2 - 6;
+      height: @theme-card-avatar-size-height - 2 - 6;
+    }
+    .mlle&,
+    .mme&{
+      background-image: url("../img/avatar/default/mme.png");
+    }
   }
 
   .name {
@@ -57,3 +74,4 @@
   }
 
 }
+
