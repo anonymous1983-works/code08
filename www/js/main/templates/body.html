@@ -1,4 +1,9 @@
-<am-card ng-repeat="contributor in contributors" data="contributor"></am-card>
+<am-card ng-repeat="contributor in filterContributors = (contributors  | filter:{firstname:main.searchInput, lastname:main.searchInput})" data="contributor"></am-card>
+
+<div class="no-result" ng-hide="filterContributors.length">
+  <article>No result !</article>
+</div>
+
 <div class="slider-alphabet vertical with-all">
   <div class="ui-tags">
 
