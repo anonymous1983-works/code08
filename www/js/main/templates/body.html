@@ -1,10 +1,27 @@
-<am-card ng-repeat="contributor in filterContributors = (contributors  | filter:{firstname:main.searchInput, lastname:main.searchInput})" data="contributor"></am-card>
+<div class="cards">
 
-<div class="no-result" ng-hide="filterContributors.length">
-  <article>No result !</article>
+  <div class="cards-group" ng-repeat="group in contributors track by $index" ng-class="{{$index}}">
+
+    <div class="cards-group-bg print"><img src="/print/img/bg/a5/bg-page.jpg"></div>
+    <div class="cards-group-content">
+      <am-card
+      ng-repeat="contributor in group"
+      index="$index + 1"
+      data="contributor">
+
+      </am-card>
+    </div>
+
+
+    </am-card>
+  </div>
 </div>
 
-<div class="slider-alphabet vertical with-all">
+<!--div class="no-result" ng-hide="filterContributors.length">
+  <article>No result !</article>
+</div-->
+
+<div class="slider-alphabet vertical with-all" ng-if="fasle">
   <div class="ui-tags">
 
     <a class="item" href="#">ALL</a>
@@ -61,5 +78,15 @@
 
     <a class="item" href="#">Z</a>
 
+  </div>
+</div>
+
+
+<div class="footer-print print">
+  <div class="a5 page-1">
+    <img src="/print/img/bg/a5/bg-star-wars-2.jpg">
+  </div>
+  <div class="a5 page-2">
+    <img src="/print/img/bg/a5/bg-star-wars.jpg">
   </div>
 </div>

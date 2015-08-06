@@ -33,6 +33,12 @@
     lesssources:  __dirname + '/www/less/**/*.less',
     css:          __dirname + '/www/css',
     stylesources: __dirname + '/www/css/**/*.css',
+
+    printless:         __dirname + '/www/print/less/print.less',
+    printlesssources:  __dirname + '/www/print/less/**/*.less',
+    printcss:          __dirname + '/www/print/css',
+    printstylesources: __dirname + '/www/print/css/**/*.css',
+
     mainapp:      __dirname + '/www/js/app.js',
     js:           __dirname + '/www/js/**/*.js',
     port: 9000,
@@ -66,6 +72,7 @@
 *
 *******************************************************************************/
   gulp.task('build', [
+    'printless',
     'less',
     'copyFiles',
     'uglify',
@@ -134,7 +141,7 @@
 * DEV
 *
 *******************************************************************************/
-  gulp.task('default', ['less', 'inject', 'connect', 'watches'], function() {
+  gulp.task('default', ['less', 'printless', 'inject', 'connect', 'watches'], function() {
     return gutil.log('!=== App running on localhost:'+ env.port +' ===!');
   });
 
@@ -143,6 +150,13 @@
     return gulp.src(env.less)
               .pipe(less())
               .pipe(gulp.dest(env.css));
+  });
+
+  // less compile
+  gulp.task('printless', function() {
+    return gulp.src(env.printless)
+      .pipe(less())
+      .pipe(gulp.dest(env.printcss));
   });
 
   // connect local server
@@ -191,7 +205,7 @@
  * Watches
  **/
   gulp.task('watches', function() {
-    gulp.watch(env.lesssources, ['less', 'inject', 'reload']);
+    gulp.watch(env.lesssources, ['less', 'printless', 'inject', 'reload']);
     gulp.watch(env.js, ['inject', 'reload']);
   });
 

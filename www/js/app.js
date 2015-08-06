@@ -3,7 +3,8 @@
 (function() {
 
   angular.module('trombiApp', [
-    'ui.router'
+    'ui.router',
+    'angular.filter'
   ])
 
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$compileProvider',
@@ -23,7 +24,7 @@
         templateUrl: 'js/main/templates/main.html',
         resolve:{
           ContributorOwners: ['Contributor', function (ContributorProvider) {
-            return ContributorProvider.getContributorOwners;
+            return ContributorProvider.contributorOwnersGroupe;
           }]
         }
       })

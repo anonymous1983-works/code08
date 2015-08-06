@@ -1,8 +1,18 @@
-<article class="card amk-card" ng-class="{m : data.title === 'M.', mlle : data.title === 'Mlle', mme : data.title === 'Mme'}">
-  <div class="avatar"></div>
-  <div class="name">
-    <span class="first-name">{{data.firstname}}</span>
-    <span class="last-name">{{data.lastname}}</span>
+<article
+class="card amk-card"
+ng-class="{m : data.title === 'M.', mlle : data.title === 'Mlle', mme : data.title === 'Mme', pagebreakafter : !pagebreakafter}">
+
+  <div class="card-wrap">
+    <div class="avatar">
+      <img class="img print" width="74">
+    </div>
+    <div class="name">
+      <span class="first-name">{{data.firstname}}</span>
+      <span class="last-name">{{data.lastname}}</span>
+    </div>
+
+    <div ng-if="data.department" class="department">{{data.department}}</div>
   </div>
-  <div ng-if="data.department" class="department">{{data.department}}</div>
+
+  <!--div ng-if="!pagebreakafter" class="bg" style="top: {{bgposition}}px"><img src="/print/img/bg/a5/bg-star-wars.jpg"></div-->
 </article>
