@@ -1,3 +1,8 @@
+@auik-mosaic-a-color: #006d85;
+// 2,109,133
+@auik-mosaic-b-color: #017287;
+// 1,114,135
+
 .home-container {
   width: 100%;
   height: 100%;
@@ -5,4 +10,110 @@
   background-size: cover;
   background-position: 50% 50%;
   overflow: hidden;
+  position: relative;
+  .wrap-mosaics {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+
+    .auik-mosaic {
+      float: left;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+
+  .auik-mosaic {
+    background-color: @auik-mosaic-a-color;
+    width: 190px;
+    height: 190px;
+    padding: 20px;
+    &.arrow-top-left {
+      &:before {
+        border-bottom-color: @auik-mosaic-a-color;
+      }
+    }
+
+    &.link {
+      background-color: rgba(2, 109, 133, 0.2);
+      animation: pulse 2s infinite;
+      &:hover {
+        animation: inherit;
+        background-color: @auik-mosaic-b-color;
+      }
+    }
+
+    .logo {
+      width: 100%;
+      height: 50px;
+      background-image: url(../img/logo/amundi.white.svg);
+      background-repeat: no-repeat;
+      background-position: 100% 0;
+      background-size: auto 30px;
+      margin-bottom: 20px;
+    }
+
+    .text {
+      color: #ffffff;
+      text-align: right;
+      .style-1 {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .style-2 {
+        font-size: 14px;
+      }
+      .style-3 {
+        font-size: 12px;
+      }
+      .style-4,
+      .style-5 {
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 30px;
+      }
+      .style-4 {
+        text-align: left;
+      }
+      .style-5 {
+        text-align: right;
+      }
+    }
+
+    .vertical-middle-wrap {
+      width: 96%;
+    }
+
+    .vertical-middle {
+      display: block;
+      width: 100%;
+      height: 100%;
+      &:before {
+        content: "";
+        width: 0;
+        height: 100%;
+        font-size: 0;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .vertical-middle-wrap {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(1, 114, 135, 1);
+  }
+  50% {
+    background-color: rgba(1, 114, 135, 0.2);
+  }
+  100% {
+    background-color: rgba(1, 114, 135, 1);
+  }
 }

@@ -1,0 +1,54 @@
+// --------------------------------------------------
+// Import / theme
+// --------------------------------------------------
+
+// Code Color
+// --------------------------------------------------
+
+@theme-color-blue: rgb(0, 28, 75);
+
+@theme-color-dodgerblue : rgb(0, 158, 224);
+
+@theme-color-teal: rgb(0, 106, 130);
+
+@theme-color-purple: rgb(138, 65, 133);
+
+@theme-color-green: rgb(151, 191, 13);
+
+@theme-color-orange: rgb(221, 160, 0);
+
+@theme-color-red: rgb(201, 79, 57);
+
+@theme-color-grey: rgb(118, 122, 126);
+
+@theme-color-brown: rgb(181, 164, 140);
+
+@theme-list-color: blue,
+dodgerblue,
+teal,
+purple,
+green,
+orange,
+red,
+grey,
+brown;
+
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1)); // next iteration
+  @c: extract(@theme-list-color, @counter);
+
+  .theme-color-@{c} {
+    color: ~"@{theme-color-@{c}}";
+  }
+
+  .theme-background-@{c} {
+    background-color: ~"@{theme-color-@{c}}";
+  }
+
+}
+
+.theme-generator () {
+  .loop(length(@theme-list-color)); // launch the loop
+}
+
+.theme-generator ();
