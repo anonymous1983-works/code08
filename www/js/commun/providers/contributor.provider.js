@@ -3,72 +3,90 @@
 (function () {
 
   angular.module('trombiApp')
-    .provider('Contributor', [
-      function () {
+    .service('ContributorFactory', ['$http', '$q',
+      function ($http, $q) {
 
-        this.contributorOwners = function ($http, $q) {
+        var cf = {
 
-          var defer = $q.defer();
-          var parms = {
-            method: "GET",
-            url: 'http://localhost:3000/owners'
-          };
-          $http(parms)
-            .success(function (data) {
-              // this callback will be called asynchronously
-              // when the response is available
+          contributorOwners: function () {
 
-              return defer.resolve(data);
-            });
+            var defer = $q.defer();
+            var parms = {
+              method: "GET",
+              url: 'http://localhost:3000/owners'
+            };
+            $http(parms)
+              .success(function (data) {
+                // this callback will be called asynchronously
+                // when the response is available
 
-          return defer.promise;
-
-        };
-
-
-        this.contributorOwnersGroupe = function ($http, $q) {
-
-          var defer = $q.defer();
-          var parms = {
-            method: "GET",
-            url: 'http://localhost:3000/owners'
-          };
-          $http(parms)
-            .success(function (data) {
-              // this callback will be called asynchronously
-              // when the response is available
-
-              console.log(data);
-
-              var qdata = [], temp = [];
-
-              var i = 1;
-
-              angular.forEach(data, function(value) {
-                temp.push(value);
-                if(i % 12 === 0){
-                  qdata.push(temp);
-                  i = 0;
-                  temp = [];
-                }
-                i++;
+                return defer.resolve(data);
               });
 
+            return defer.promise;
 
-              return defer.resolve(qdata);
-            });
+          },
 
-          return defer.promise;
+          contributorOwnersByGroup: function () {
+
+            var defer = $q.defer();
+            var parms = {
+              method: "GET",
+              url: 'http://localhost:3000/owners'
+            };
+            $http(parms)
+              .success(function (data) {
+                // this callback will be called asynchronously
+                // when the response is available
+                var qData = [], temp = [], i = 1;
+
+                angular.forEach(data, function (value) {
+                  temp.push(value);
+                  if (i % 12 === 0) {
+                    qData.push(temp);
+                    i = 0;
+                    temp = [];
+                  }
+                  i++;
+                });
+
+
+                return defer.resolve(qData);
+              });
+
+            return defer.promise;
+
+          },
+          contributorOwner: function (contributorId) {
+
+
+            var defer = $q.defer();
+            var parms = {
+              method: "GET",
+              url: 'http://localhost:3000/owners/?rpid=' + contributorId
+            };
+            $http(parms)
+              .success(function (data) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                return defer.resolve(data);
+              });
+
+            return defer.promise;
+
+          }
 
         };
 
-        this.$get = function ($http, $q) {
 
-          return {
-            getContributorOwners: this.contributorOwners($http, $q),
-            contributorOwnersGroupe: this.contributorOwnersGroupe($http, $q)
-          };
+        this.currentContributorId = '';
 
+
+        return {
+          getContributorOwners: cf.contributorOwners,
+          contributorOwnersByGroup: cf.contributorOwnersByGroup,
+          contributorOwner: cf.contributorOwner
         };
 
       }

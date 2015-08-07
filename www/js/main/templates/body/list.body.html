@@ -1,0 +1,92 @@
+<div class="cards">
+
+  <div class="cards-group" ng-repeat="group in contributors track by $index" ng-class="{{$index}}">
+
+    <div class="cards-group-bg print"><img src="/print/img/bg/a5/bg-page.jpg"></div>
+    <div class="cards-group-content">
+      <am-card
+      ng-repeat="contributor in group"
+      index="$index + 1"
+      data="contributor">
+
+      </am-card>
+    </div>
+
+
+    </am-card>
+  </div>
+</div>
+
+<!--div class="no-result" ng-hide="filterContributors.length">
+  <article>No result !</article>
+</div-->
+
+<div class="slider-alphabet vertical with-all" ng-if="fasle">
+  <div class="ui-tags">
+
+    <a class="item" href="#">ALL</a>
+
+    <a class="item" href="#">A</a>
+
+    <a class="item" href="#">B</a>
+
+    <a class="item" href="#">C</a>
+
+    <a class="item" href="#">D</a>
+
+    <a class="item" href="#">E</a>
+
+    <a class="item" href="#">F</a>
+
+    <a class="item" href="#">G</a>
+
+    <a class="item" href="#">H</a>
+
+    <a class="item" href="#">I</a>
+
+    <a class="item" href="#">J</a>
+
+    <a class="item" href="#">K</a>
+
+    <a class="item" href="#">L</a>
+
+    <a class="item" href="#">M</a>
+
+    <a class="item" href="#">N</a>
+
+    <a class="item" href="#">O</a>
+
+    <a class="item" href="#">P</a>
+
+    <a class="item" href="#">Q</a>
+
+    <a class="item" href="#">R</a>
+
+    <a class="item" href="#">S</a>
+
+    <a class="item" href="#">T</a>
+
+    <a class="item" href="#">U</a>
+
+    <a class="item" href="#">V</a>
+
+    <a class="item" href="#">W</a>
+
+    <a class="item" href="#">X</a>
+
+    <a class="item" href="#">Y</a>
+
+    <a class="item" href="#">Z</a>
+
+  </div>
+</div>
+
+
+<div class="footer-print print">
+  <div class="a5 page-1">
+    <img src="/print/img/bg/a5/bg-star-wars-2.jpg">
+  </div>
+  <div class="a5 page-2">
+    <img src="/print/img/bg/a5/bg-star-wars.jpg">
+  </div>
+</div>

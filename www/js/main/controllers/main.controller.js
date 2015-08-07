@@ -18,11 +18,9 @@
         }
       };
 
-      //var x = ContributorProvider.getContributorOwners();
+      //ContributorProvider.getContributorOwners();
 
-      var x = ContributorOwners;
-
-      $scope.contributors = orderBy(x, 'firstname', false);
+      $scope.contributors = orderBy(ContributorOwners, 'firstname', false);
 
 
 

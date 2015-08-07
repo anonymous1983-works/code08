@@ -6,10 +6,10 @@ ng-class="{m : data.title === 'M.', mlle : data.title === 'Mlle', mme : data.tit
     <div class="avatar">
       <img class="img print" width="74">
     </div>
-    <div class="name">
+    <a ui-sref="main.detailContributor({contributorId: data.rpid})" href="" class="name">
       <span class="first-name">{{data.firstname}}</span>
       <span class="last-name">{{data.lastname}}</span>
-    </div>
+    </a>
 
     <div ng-if="data.department" class="department">{{data.department}}</div>
   </div>
