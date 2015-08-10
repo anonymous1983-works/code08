@@ -3,26 +3,47 @@
 (function () {
 
   angular.module('trombiApp')
-    .directive('amCard', ['$http', function ($http) {
+    .directive('amCardDetail', function () {
 
       return {
         restrict: 'E',
         replace: true,
         multiElement: true,
         transclude: true,
-        templateUrl: 'js/main/templates/card.html',
+        templateUrl: 'js/main/templates/card-detail.html',
 
         scope: {
-          data: '=',
-          index: '='
+          data: '='
         },
         link: function (scope, elem) {
 
-          scope.pagebreakafter = scope.index % 12;
-          scope.bgposition = ( scope.index / 12 ) * 584;
+          scope.user = {
+            _title: 'Hi, My name is',
+            _value: scope.data.firstname + ' ' + scope.data.lastname
+          };
+
+          scope.toggleDetailUser = function (t, v) {
+            return scope.user = {
+              _title: t,
+              _value: v
+            }
+          };
+
+          scope.getEmail = function () {
+            var email = scope.data.firstname + '.' + scope.data.lastname + '@amundi.com';
+            var reg = new RegExp(" ", "g");
+            email = email.toLowerCase().replace(reg, '');
+            return email;
+          };
+
 
           var avatar = angular.element(elem[0].querySelectorAll('.avatar')[0]);
-          var values_list = angular.element(elem[0].querySelectorAll('.values_list')[0]);
+          var values_list = angular.element(elem[0].querySelectorAll('.values_list')[0]).find('li');
+
+          //var list_li = values_list.find('li');
+
+
+          console.log(values_list);
 
           // preload image
           var img = new Image();
@@ -37,7 +58,6 @@
             avatar.css({
               backgroundImage: 'url(' + scope.data.url1 + ')'
             });
-            avatar.find('img')[0].src = scope.data.url1;
             unbind();
           });
 
@@ -47,13 +67,13 @@
           });
 
           var errorImg = function () {
-            avatar.find('img')[0].src = "http://localhost:9000/img/avatar/default/m.png" ;
             return true;
           };
 
         }
-      };
 
-    }]);
+      }
+
+    });
 
 })();

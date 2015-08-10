@@ -1,0 +1,44 @@
+<div class="card-detail">
+  <div class="card-detail-wrap">
+
+    <a class="back-to-list" ui-sref="main.listContributors" >Back List</a>
+
+    <div class="details">
+      <div class="user_photo horizontal_center" id="user_photo">
+        <div class="avatar"></div>
+      </div>
+      <p id="user_title" class="user_title">{{user._title}}</p>
+
+      <p id="user_value" class="user_value">{{user._value}}</p>
+
+
+      <ul class="values_list horizontal_center" id="values_list">
+        <li data-label="name"
+            ng-click="toggleDetailUser('Hi, My name is', data.title + ' ' + data.firstname + ' '+ data.lastname);"
+            class="active">
+        </li>
+        <li data-label="phone"
+            ng-click="toggleDetailUser('My phone number is', data.phone);"
+            class="">
+        </li>
+        <li data-label="email"
+            ng-click="toggleDetailUser('My email address is', getEmail());"
+            class="">
+        </li>
+        <!--li data-label="birthday"
+            ng-click="toggleDetailUser('My birthday is', '4/7/1972');"
+            class="">
+        </li-->
+        <li data-label="location"
+            ng-click="toggleDetailUser('My office // localisation // position is', data.office_name + ' // ' + data.localisation + ' // ' + data.position);"
+            class="">
+        </li>
+        <!--li data-label="pass"
+            ng-click="toggleDetailUser('My password is', 'webmaste');"
+            class="">
+        </li-->
+      </ul>
+
+    </div>
+  </div>
+</div>

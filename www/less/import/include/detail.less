@@ -1,4 +1,11 @@
-.detail-contributor{
+@theme-card-detail-li-number: 4;
+@theme-card-detail-li-width: 80px;
+@theme-card-detail-offset-top: 50px;
+@theme-card-detail-offset-bottom: 30px;
+@theme-card-detail-avatar-size-width: 120px;
+@theme-card-detail-avatar-size-height: 120px;
+
+.detail-contributor {
   background-color: @theme-color-blue;
   background-image: url(../img/bg-detail-contributor.jpg);
   background-position: 0 100%;
@@ -7,13 +14,33 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+
+  .back-to-list {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    padding: 10px 10px 10px 20px;
+
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+
+
+    background-image: url(../img/arrow-left.svg);
+    background-size: auto 50%;
+    background-repeat: no-repeat;
+    background-position: 0px 46%;
+  }
+
   .frame {
     max-width: 730px;
     margin: auto;
     overflow: hidden;
     margin-top: 200px;
 
-    .card {
+    .card-detail {
+
       position: relative;
       padding: 20px 0;
       width: 100%;
@@ -25,8 +52,134 @@
       text-align: center;
       z-index: 5;
       height: 425px;
+
+      &:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        top: 0;
+        height: (@theme-card-detail-avatar-size-height / 2 ) + @theme-card-detail-offset-top + 20;
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #d4d4d4;
+      }
+
+      .details {
+        .avatar {
+          background-repeat: no-repeat;
+          background-position: 50% 20%;
+          background-size: 100%;
+          width: @theme-card-detail-avatar-size-width;
+          height: @theme-card-detail-avatar-size-height;
+          border-radius: 50%;
+          position: relative;
+          top: 0;
+          left: 50%;
+          margin-left: -(@theme-card-detail-avatar-size-width / 2);
+          margin-top: @theme-card-detail-offset-top;
+          border: 3px solid #d4d4d4;
+          background-color: #fff;
+          background-image: url("../img/avatar/default/m.png");
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            width: @theme-card-detail-avatar-size-width - 2 - 6;
+            height: @theme-card-detail-avatar-size-height - 2 - 6;
+          }
+          .mlle&,
+          .mme& {
+            background-image: url("../img/avatar/default/mme.png");
+          }
+        }
+
+        .user_photo {
+          padding: 0 0 @theme-card-detail-offset-bottom 0;
+        }
+
+        .user_title {
+          color: #999999;
+          font-size: 18px;
+          margin: 0;
+        }
+
+        .user_value {
+          color: #2c2e31;
+          font-size: 32px;
+          font-weight: 400;
+          margin: 5px;
+          line-height: 32px;
+        }
+
+        .values_list {
+          list-style-type: none;
+          margin: 0 auto;
+          padding: 30px 0 0 0;
+          overflow: hidden;
+          width: (@theme-card-detail-li-number * @theme-card-detail-li-width);
+        }
+        .values_list li {
+          cursor: pointer;
+          display: block;
+          width: 40px;
+          height: 48px;
+          float: left;
+          margin: 20px;
+          background-image: url(../img/card_icons.png);
+          -webkit-background-size: 378px 378px;
+          background-size: 378px;
+          background-position-y: -48px;
+          -webkit-transition: all 0.25s ease-out;
+          transition: all 0.25s ease-out;
+        }
+        .values_list li:before {
+          content: attr(data-label);
+          opacity: 0;
+        }
+        .values_list li.active[data-label="name"] {
+          background-position: 0px -96px;
+        }
+        .values_list li.active[data-label="email"] {
+          background-position: -68px -96px;
+        }
+        .values_list li.active[data-label="birthday"] {
+          background-position: -135px -96px;
+        }
+        .values_list li.active[data-label="location"] {
+          background-position: -203px -96px;
+        }
+        .values_list li.active[data-label="phone"] {
+          background-position: -270px -96px;
+        }
+        .values_list li.active[data-label="pass"] {
+          background-position: -338px -96px;
+        }
+        .values_list li[data-label="name"] {
+          background-position: 0px -48px;
+        }
+        .values_list li[data-label="email"] {
+          background-position: -68px -48px;
+        }
+        .values_list li[data-label="birthday"] {
+          background-position: -135px -48px;
+        }
+        .values_list li[data-label="location"] {
+          background-position: -203px -48px;
+        }
+        .values_list li[data-label="phone"] {
+          background-position: -270px -48px;
+        }
+        .values_list li[data-label="pass"] {
+          background-position: -338px -48px;
+        }
+      }
+
     }
   }
-
 
 }
