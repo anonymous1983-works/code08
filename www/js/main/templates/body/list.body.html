@@ -2,7 +2,7 @@
 
   <div class="cards-group" ng-repeat="group in contributors track by $index" ng-class="{{$index}}">
 
-    <div class="cards-group-bg print"><img src="/print/img/bg/a5/bg-page.jpg"></div>
+    <div class="cards-group-bg print"><img src="/print/img/bg/a4/bg-page.jpg"></div>
     <div class="cards-group-content">
       <am-card
       ng-repeat="contributor in group"
@@ -82,11 +82,17 @@
 </div>
 
 
+
 <div class="footer-print print">
+
+  <div ng-repeat="n in [] | range:even" class="a5 page-even">
+    <img src="/print/img/bg/a4/bg-page.jpg">
+  </div>
+
   <div class="a5 page-1">
-    <img src="/print/img/bg/a5/bg-star-wars-2.jpg">
+    <img src="/print/img/bg/a4/bg-star-wars-2.jpg">
   </div>
   <div class="a5 page-2">
-    <img src="/print/img/bg/a5/bg-star-wars.jpg">
+    <img src="/print/img/bg/a4/bg-back-star-wars.jpg">
   </div>
 </div>

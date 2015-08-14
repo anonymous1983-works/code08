@@ -2,97 +2,179 @@
   display: block !important;
 }
 
-@page-print-width: 874px;
-@page-print-height: 586px;
-@page-print-card-width: 198px;
-
 .slider-alphabet,
 .page-container-header .header-left,
 .page-container-header .header-search {
   display: none !important;
 }
 
-.page-container-header {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  float: none;
-  line-height: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  height: auto;
+body.format-a4 {
 
-  .header-print{
+  @page-print-width: 1403px;
+  @page-print-height: 991px;
+  @page-print-card-width: 310px;
+  @page-print-card-height: 186px;
+
+  @page-print-card-avatar-size: 160px;
+
+  .page-container-header {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    float: none !important;
+    line-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    height: auto !important;
+
+    .header-print {
+      .a5 {
+        width: @page-print-width;
+        height: @page-print-height;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .footer-print {
     .a5 {
       width: @page-print-width;
       height: @page-print-height;
       overflow: hidden;
+      padding: 0;
+      margin: 0;
+      background-color: transparent;
     }
   }
-}
 
-.footer-print{
-  .a5 {
+  .layout-body-center {
+    position: relative;
+    overflow: auto;
+    top: 0 !important;
+    padding: 0 !important;;
+    margin: 0 !important;;
+
+    .header-visible & {
+      top: 0 !important;;
+    }
+  }
+
+  .cards {
+    margin: 0;
+    padding: 0;
+  }
+
+  .cards-group {
     width: @page-print-width;
     height: @page-print-height;
     overflow: hidden;
-  }
-}
-
-.layout-body-center {
-  position: relative;
-  overflow: auto;
-  .header-visible & {
-    top: 0;
-  }
-}
-
-.cards{
-  margin: 0;
-  padding: 0;
-}
-
-.cards-group {
-  width: @page-print-width;
-  height: @page-print-height;
-  overflow: hidden;
-  position: relative;
-  margin: 0;
-  > .cards-group-bg,
-  > .cards-group-content{
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    width: @page-print-width;
-    height: @page-print-height;
-    overflow: hidden;
-    border: 0 !important;
+    position: relative;
     margin: 0 !important;
-    padding: 0 !important;
-    display: block;
-  }
+    padding: 40px 0 0 0 !important;
+    border: 0 !important;
 
-  > .cards-group-content {
-    z-index: 1;
-    top: 20px;
-    height: @page-print-height - 20;
-  }
-}
-
-.amk-card {
-  width: @page-print-card-width;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-
-  .avatar {
-    overflow: hidden;
-    border: 3px solid #3383ce;
-    &:before{
-      border: 3px solid #ffffff;
+    > .cards-group-bg,
+    > .cards-group-content {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: @page-print-width;
+      height: @page-print-height;
+      overflow: hidden;
+      border: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block;
     }
+
+    > .cards-group-content {
+      z-index: 1;
+      top: 20px;
+      height: @page-print-height - 20;
+      padding: 20px 0 0 0 !important;
+    }
+  }
+
+  .amk-card {
+    width: @page-print-card-width;
+    height: @page-print-card-height;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 35px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    margin-top: 10 + (@page-print-card-avatar-size / 2);
+
+    padding-top: 10 + (@page-print-card-avatar-size / 2);
+
+    &:after {
+      // pour cammoufler le parasite ontours l'image
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+
+      margin-left: -(@page-print-card-avatar-size / 2) - 2;
+      margin-top: -(@page-print-card-avatar-size / 2 ) - 2;
+
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      width: @page-print-card-avatar-size - 2;
+      height: @page-print-card-avatar-size - 2;
+      z-index: 3 ;
+    }
+
+    .avatar {
+      background-repeat: no-repeat;
+      background-position: 50% 20%;
+      background-size: 100%;
+      width: @page-print-card-avatar-size;
+      height: @page-print-card-avatar-size;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -(@page-print-card-avatar-size / 2);
+      margin-top: -(@page-print-card-avatar-size / 2 );
+      border: 0;
+      background-color: #e9eaed;
+      overflow: hidden !important;
+
+      .img {
+        width: @page-print-card-avatar-size - 4;
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        width: @page-print-card-avatar-size - 4;
+        height: @page-print-card-avatar-size - 4;
+        z-index: 2 ;
+      }
+      .mlle&,
+      .mme& {
+        background-image: url("../img/avatar/default/mme.png");
+      }
+    }
+
+    .name {
+      text-align: center;
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+
+    .department {
+      text-align: center;
+      font-size: 1em;
+    }
+
   }
 }

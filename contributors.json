@@ -3359,6 +3359,38 @@
       "position": "91A 02 1 -J21.01",
       "url1": "https://mysite.intramundi.com/User%20Photos/Images%20du%20profil/ad-its_zouaoui_LThumb.jpg",
       "url2": "https://annuaire.intramundi.com/rp_export_picture&_f=uid=AMUNDI-yzouaoui,ou=People,o=AMUNDI"
+    },
+    {
+      "uid": "AMUNDIITS-clerider,ou=People,o=AMUNDI-ITS",
+      "rpid": "RP004710",
+      "login": "clerider",
+      "title": "M.",
+      "firstname": "Christian",
+      "lastname": "Lerider",
+      "phone": "+ 33 1 76 32 06 58",
+      "internal_phone": "20658",
+      "department": "SDE/SIO/SIT/ETU/RRC/PER",
+      "office_name": "Singapour",
+      "localisation": "DA/11",
+      "position": "DA 11065.01",
+      "url1": "https://mysite.intramundi.com/User%20Photos/Images%20du%20profil/ad-its_clerider_LThumb.jpg",
+      "url2": "http://annuaire.intramundi.com/rp_export_picture&_f=uid=AMUNDIITS-clerider,ou=People,o=AMUNDI-ITS"
+    },
+    {
+      "uid": "AMUNDIITS-cmolinarie,ou=People,o=AMUNDI-ITS",
+      "rpid": "RP007168",
+      "login": "cmolinarie",
+      "title": "Mme",
+      "firstname": "Christelle",
+      "lastname": "Molinarie",
+      "phone": "+ 33 1 76 32 16 66",
+      "internal_phone": "21666",
+      "department": "SDE/SIO/SIT/ETU/RRC/MFN",
+      "office_name": "90 Agoram",
+      "localisation": "90A/02",
+      "position": "90A 02123.02",
+      "url1": "https://mysite.intramundi.com/User%20Photos/Images%20du%20profil/ad-its_cmolinarie_LThumb.jpg",
+      "url2": "http://annuaire.intramundi.com/rp_export_picture&_f=uid=AMUNDIITS-cmolinarie,ou=People,o=AMUNDI-ITS"
     }
   ]
 }

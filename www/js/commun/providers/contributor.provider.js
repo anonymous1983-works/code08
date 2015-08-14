@@ -3,8 +3,8 @@
 (function () {
 
   angular.module('trombiApp')
-    .service('ContributorFactory', ['$http', '$q',
-      function ($http, $q) {
+    .service('ContributorFactory', ['$http', '$q', '$filter', 'TrombiConfig',
+      function ($http, $q, $filter, TrombiConfig) {
 
         var cf = {
 
@@ -38,19 +38,25 @@
               .success(function (data) {
                 // this callback will be called asynchronously
                 // when the response is available
-                var qData = [], temp = [], i = 1;
+                var qData = [], temp = [], nbrGrpups = 0, g = 1;
 
-                angular.forEach(data, function (value) {
+
+                data = $filter('orderBy')(data, 'lastname', false);
+
+                nbrGrpups = Math.round(data.length / TrombiConfig.nbrOfUserOfPage);
+
+                angular.forEach(data, function (value, key) {
                   temp.push(value);
-                  if (i % 12 === 0) {
+                  if ((key + 1) % 12 === 0 && g != nbrGrpups) {
                     qData.push(temp);
-                    i = 0;
                     temp = [];
+                    g++;
+                  } else {
+                    if (g === nbrGrpups && key === (data.length - 1)) {
+                      qData.push(temp);
+                    }
                   }
-                  i++;
                 });
-
-
                 return defer.resolve(qData);
               });
 
@@ -58,7 +64,6 @@
 
           },
           contributorOwner: function (contributorId) {
-
 
             var defer = $q.defer();
             var parms = {
@@ -78,10 +83,6 @@
           }
 
         };
-
-
-        this.currentContributorId = '';
-
 
         return {
           getContributorOwners: cf.contributorOwners,

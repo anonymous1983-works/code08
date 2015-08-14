@@ -3,7 +3,7 @@
 (function () {
 
   angular.module('trombiApp')
-    .directive('amCard', ['$http', function ($http) {
+    .directive('amCard', ['$http', 'TrombiPaths', 'TrombiConfig', 'AvatarService', function ($http, TrombiPaths, TrombiConfig, AvatarService) {
 
       return {
         restrict: 'E',
@@ -18,7 +18,7 @@
         },
         link: function (scope, elem) {
 
-          scope.pagebreakafter = scope.index % 12;
+          scope.pagebreakafter = scope.index % TrombiConfig.nbrOfUserOfPage;
           scope.bgposition = ( scope.index / 12 ) * 584;
 
           var avatar = angular.element(elem[0].querySelectorAll('.avatar')[0]);
@@ -32,12 +32,8 @@
             angular.element(img).off();
           };
 
-
           angular.element(img).on('load', function () {
-            avatar.css({
-              backgroundImage: 'url(' + scope.data.url1 + ')'
-            });
-            avatar.find('img')[0].src = scope.data.url1;
+            setAvatar(scope.data.url1);
             unbind();
           });
 
@@ -47,9 +43,21 @@
           });
 
           var errorImg = function () {
-            avatar.find('img')[0].src = "http://localhost:9000/img/avatar/default/m.png" ;
+            if (scope.data.title === 'M.') {
+              setAvatar(TrombiPaths.baseUrl + AvatarService.getRandomAvatar('men').url);
+            } else {
+              setAvatar(TrombiPaths.baseUrl + AvatarService.getRandomAvatar('women').url);
+            }
             return true;
           };
+
+          var setAvatar = function(url){
+            avatar.css({
+              backgroundImage: 'url(' + url + ')'
+            });
+            avatar.find('img')[0].src = url;
+          }
+
 
         }
       };

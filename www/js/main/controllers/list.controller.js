@@ -3,26 +3,13 @@
 (function() {
 
   angular.module('trombiApp')
-    .controller('ListController', ['$scope', '$timeout', '$filter', 'ContributorOwners',
-      function($scope, $timeout, $filter, ContributorOwners) {
+    .controller('ListController', ['$scope', 'ContributorOwners',
+      function($scope, ContributorOwners) {
 
-        var orderBy = $filter('orderBy');
+        $scope.main = {};
 
-        $scope.main = {
-          searchVisible: false,
-          searchIcon: false,
-
-          // Search
-          search: function() {
-            return true;
-          }
-        };
-
-        //ContributorProvider.getContributorOwners();
-
-        $scope.contributors = orderBy(ContributorOwners, 'firstname', false);
-
-
+        $scope.contributors = ContributorOwners;
+        $scope.even = (ContributorOwners.length + 4) % 4;
 
       }]);
 

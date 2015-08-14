@@ -40,10 +40,6 @@
           var avatar = angular.element(elem[0].querySelectorAll('.avatar')[0]);
           var values_list = angular.element(elem[0].querySelectorAll('.values_list')[0]).find('li');
 
-          //var list_li = values_list.find('li');
-
-
-          console.log(values_list);
 
           // preload image
           var img = new Image();
