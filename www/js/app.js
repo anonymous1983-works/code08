@@ -3,7 +3,8 @@
 (function () {
 
   angular.module('trombiApp', [
-    'ui.router'
+    'ui.router',
+    'autofocus'
   ])
 
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$compileProvider',
@@ -23,17 +24,18 @@
 
           })
           .state('main.listContributors', {
-            url: '/contributors',
+            url: '/contributors?q',
             views: {
               'viewPageContainerHeader': {
+                controller: 'MainController',
                 templateUrl: 'js/main/templates/header.html'
               },
 
               'viewPageContainerBodyCenter': {
                 controller: 'ListController',
                 resolve: {
-                  ContributorOwners: ['ContributorFactory', function (ContributorFactory) {
-                    return ContributorFactory.contributorOwnersByGroup();
+                  ContributorOwners: ['$stateParams', 'ContributorFactory', function ($stateParams, ContributorFactory) {
+                    return ContributorFactory.contributorOwnersByGroup($stateParams.q);
                   }]
                 },
                 templateUrl: 'js/main/templates/body/list.body.html'
@@ -45,6 +47,7 @@
             url: '/contributor/:contributorId',
             views: {
               'viewPageContainerHeader': {
+                controller: 'MainController',
                 templateUrl: 'js/main/templates/header.html'
               },
 

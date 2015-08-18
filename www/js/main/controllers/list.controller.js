@@ -1,10 +1,10 @@
 'use strict';
 
-(function() {
+(function () {
 
   angular.module('trombiApp')
     .controller('ListController', ['$scope', 'ContributorOwners',
-      function($scope, ContributorOwners) {
+      function ($scope, ContributorOwners) {
 
         $scope.main = {};
 

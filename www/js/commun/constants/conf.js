@@ -44,7 +44,22 @@
 
   angular.module('trombiApp')
     .constant('TrombiRest', {
-      baseUrl: 'js/'
+      //baseUrl: 'http://trombi.intramundi.com/',
+      baseUrl: 'http://localhost:3000/',
+      request: {
+        contributor: {
+          all: {
+            method: 'GET',
+            //url: 'contributors.json'
+            url: 'owners'
+          },
+          byId:{
+            method: 'GET',
+            url: 'owners/?rpid='
+          }
+        }
+      }
+
     });
 
   angular.module('trombiApp')

@@ -7,13 +7,15 @@
 <div class="header-search">
   <form class="search-global">
     <input
+    id="q"
     type="text"
+    autocomplete="off"
     class="form-control input"
     ng-model="main.searchInput"
-    ng-model-options="{debounce: 300}"
+    ng-model-options="{debounce: { 'default': 300, 'blur': 0 }}"
     ng-change="main.search()"
     autofocus>
-    <i class="btn clear-search fa fa-close" ng-show="main.searchIcon" ng-click="main.initSearch()"></i>
+    <i class="btn clear-search fa fa-close" ng-show="main.searchIcon"></i>
     <i class="btn search fa fa-search hidden-xs" ng-show="!main.searchIcon"></i>
     <input type="submit" class="form-control btn submit">
   </form>

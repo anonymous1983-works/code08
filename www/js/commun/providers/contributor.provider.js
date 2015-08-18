@@ -3,8 +3,8 @@
 (function () {
 
   angular.module('trombiApp')
-    .service('ContributorFactory', ['$http', '$q', '$filter', 'TrombiConfig',
-      function ($http, $q, $filter, TrombiConfig) {
+    .service('ContributorFactory', ['$http', '$q', '$filter', 'TrombiConfig', 'TrombiRest',
+      function ($http, $q, $filter, TrombiConfig, TrombiRest) {
 
         var cf = {
 
@@ -12,8 +12,8 @@
 
             var defer = $q.defer();
             var parms = {
-              method: "GET",
-              url: 'http://localhost:3000/owners'
+              method: TrombiRest.request.contributor.all.method,
+              url: TrombiRest.baseUrl + TrombiRest.request.contributor.all.url
             };
             $http(parms)
               .success(function (data) {
@@ -27,12 +27,12 @@
 
           },
 
-          contributorOwnersByGroup: function () {
+          contributorOwnersByGroup: function (q) {
 
             var defer = $q.defer();
             var parms = {
-              method: "GET",
-              url: 'http://localhost:3000/owners'
+              method: TrombiRest.request.contributor.all.method,
+              url: TrombiRest.baseUrl + TrombiRest.request.contributor.all.url
             };
             $http(parms)
               .success(function (data) {
@@ -40,10 +40,11 @@
                 // when the response is available
                 var qData = [], temp = [], nbrGrpups = 0, g = 1;
 
+                data = $filter('filter')(data, {'lastname' : q});
 
                 data = $filter('orderBy')(data, 'lastname', false);
 
-                nbrGrpups = Math.round(data.length / TrombiConfig.nbrOfUserOfPage);
+                nbrGrpups = Math.round(data.length / TrombiConfig.nbrOfUserOfPage) ? Math.round(data.length / TrombiConfig.nbrOfUserOfPage) : 1;
 
                 angular.forEach(data, function (value, key) {
                   temp.push(value);
@@ -57,6 +58,7 @@
                     }
                   }
                 });
+
                 return defer.resolve(qData);
               });
 
@@ -67,8 +69,8 @@
 
             var defer = $q.defer();
             var parms = {
-              method: "GET",
-              url: 'http://localhost:3000/owners/?rpid=' + contributorId
+              method: TrombiRest.request.contributor.byId.method,
+              url: TrombiRest.baseUrl + TrombiRest.request.contributor.byId.url + contributorId
             };
             $http(parms)
               .success(function (data) {
