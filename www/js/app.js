@@ -4,7 +4,9 @@
 
   angular.module('trombiApp', [
     'ui.router',
-    'autofocus'
+    'autofocus',
+    'indexedDB',
+    'ngStorage'
   ])
 
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$compileProvider',

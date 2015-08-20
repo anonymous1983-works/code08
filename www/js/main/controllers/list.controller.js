@@ -7,7 +7,6 @@
       function ($scope, ContributorOwners) {
 
         $scope.main = {};
-
         $scope.contributors = ContributorOwners;
         $scope.even = (ContributorOwners.length + 4) % 4;
 
