@@ -3,8 +3,8 @@
 (function () {
 
   angular.module('trombiApp')
-    .service('ContributorFactory', ['$http', '$q', '$filter', 'TrombiConfig', 'TrombiRest', '$indexedDB', '$sessionStorage',
-      function ($http, $q, $filter, TrombiConfig, TrombiRest, $indexedDB, $sessionStorage) {
+    .service('ContributorFactory', ['$http', '$q', '$filter', 'TrombiConfig', 'TrombiRest', '$indexedDB', '$sessionStorage', 'CotributorModelService',
+      function ($http, $q, $filter, TrombiConfig, TrombiRest, $indexedDB, $sessionStorage, CotributorModelService) {
 
         var cf = {
 
@@ -40,48 +40,37 @@
               // this code will be execute
               // when the indexedDB persist
 
-              $indexedDB.openStore('contributor', function (store) {
-                store.getAll().then(function (data) {
-                  store.closeDatabase;
-                  qData = cf.dataSort(data, q); //sort data
-                  return defer.resolve(qData);
+              // Test if browser support the indexedDB
+              if (window.indexedDB) {
+                // If supported then get all data indexedDB in contributor model
+                $indexedDB.openStore('contributor', function (store) {
+                  store.getAll().then(function (data) {
+                    store.closeDatabase;
+                    qData = cf.dataSort(data, q); //sort data
+                    return defer.resolve(qData);
 
+                  });
                 });
-              });
+              } else {
+                console.log('IndexedDB not supported ');
+              }
 
             } else {
-
               $http(parms)
                 .success(function (data) {
                   // this callback will be called asynchronously
                   // when the response is available
 
-                  $indexedDB.openStore('contributor', function (store) {
+                  // Test if browser support the indexedDB
+                  if (window.indexedDB) {
+                    // If supported then add data to your indexedDB
+                    // and set sessionStorage to true
 
-                    angular.forEach(data, function (value) {
-                      store.insert({
-                        "rpid": value.rpid,
-                        "uid": value.uid,
-                        "login": value.login,
-                        "title": value.title,
-                        "firstname": value.firstname,
-                        "lastname": value.lastname,
-                        "phone": value.phone,
-                        "internal_phone": value.internal_phone,
-                        "department": value.department,
-                        "office_name": value.office_name,
-                        "localisation": value.localisation,
-                        "position": value.position,
-                        "url1": value.url1,
-                        "url2": value.url2
-                      }).then(function (e) {
-                        console.log(e);
-                      });
+                    CotributorModelService.add(data, function () {
+                      $sessionStorage.indexedDB = true; // The sessionStorage.indexdDb prove the indexedDB is persist
                     });
 
-                    $sessionStorage.indexedDB = true; // The sessionStorage.indexdDb prove the indexedDB is persist
-
-                  });
+                  }
 
                   qData = cf.dataSort(data, q);
 
@@ -118,9 +107,7 @@
             });
 
             return qData;
-          }
-
-          ,
+          },
 
           contributorOwner: function (contributorId) {
 
@@ -129,13 +116,26 @@
               method: TrombiRest.request.contributor.byId.method,
               url: TrombiRest.baseUrl + TrombiRest.request.contributor.byId.url + contributorId
             };
-            $http(parms)
-              .success(function (data) {
-                // this callback will be called asynchronously
-                // when the response is available
 
-                return defer.resolve(data);
+            // Test if browser support the indexedDB
+            if (window.indexedDB) {
+              // If supported then get all data indexedDB in contributor model
+
+
+              $indexedDB.openStore('contributor', function (store) {
+                store.findWhere(store.query().$index("rpid_id").$eq(contributorId)).then(function (data) {
+                  store.closeDatabase;
+                  return defer.resolve(data);
+                });
               });
+            } else {
+              $http(parms)
+                .success(function (data) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  return defer.resolve(data);
+                });
+            }
 
             return defer.promise;
 
