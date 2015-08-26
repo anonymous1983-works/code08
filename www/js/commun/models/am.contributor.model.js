@@ -56,21 +56,20 @@
 
     };
 
-    this.findbyIndex = function(index, value, callback){
+    this.findbyIndex = function (index, value, callback) {
 
       // Test if browser support the indexedDB
       if (window.indexedDB) {
 
-        /*$indexedDB.openStore('contributor', function (store) {
+
+        $indexedDB.openStore('contributor', function (store) {
           store.findWhere(store.query().$index(index).$eq(value)).then(function (data) {
             store.closeDatabase;
-            callback(data);
+            if (callback && typeof(callback) === "function") {
+              callback(data);
+            }
           });
-        });*/
-
-        if (callback && typeof(callback) === "function") {
-          callback();
-        }
+        });
 
       }
 

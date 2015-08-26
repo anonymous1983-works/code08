@@ -16,13 +16,7 @@
           }
         };
 
-        //ContributorProvider.getContributorOwners();
-
-        console.log(ContributorOwner);
-
         $scope.contributor = ContributorOwner[0];
-
-
 
       }]);
 

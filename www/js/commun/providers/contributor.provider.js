@@ -121,13 +121,11 @@
             if (window.indexedDB) {
               // If supported then get all data indexedDB in contributor model
 
-
-              $indexedDB.openStore('contributor', function (store) {
-                store.findWhere(store.query().$index("rpid_id").$eq(contributorId)).then(function (data) {
-                  store.closeDatabase;
-                  return defer.resolve(data);
-                });
+              CotributorModelService.findbyIndex('rpid_id', contributorId, function (data) {
+                return defer.resolve(data);
+                //return defer.resolve(data);
               });
+
             } else {
               $http(parms)
                 .success(function (data) {
